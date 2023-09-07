@@ -7,18 +7,23 @@ class Timer extends React.Component{
     constructor(){
       super();
       this.state={
-        time : new Date().toLocaleTimeString()
+        time : 10
       }
     }
     componentDidMount(){
-        console.log("componrmtydi")
-        setInterval(() => {
+        
+       interval= setInterval(() => {
             this.setState({
-            time : new Date().toLocaleTimeString()
+            time : this.state.time-1
            })}, 1000)
     }
+    componentDidUpdate(){
+      if(this.state.time==0){
+        clearInterval(interval);
+      }
+    }
   render(){
-    console.log("render");
+    
     return(  
      <h2 className="timer">
       it is {this.state.time}
@@ -26,4 +31,5 @@ class Timer extends React.Component{
     
      )}
    }
+
    export default Timer;
